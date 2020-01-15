@@ -1,0 +1,8 @@
+type Permission {
+  uuid: String!
+  name: PermissionNames
+}
+
+enum PermissionNames {
+  DEFAULT # useless but we can't create an empty enum
+}

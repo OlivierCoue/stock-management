@@ -1,0 +1,67 @@
+scalar Date
+
+type Mutation {
+  Stock_createOne(createInput: StockCreateInput!): Stock!
+  Stock_updateOne(updateInput: StockUpdateInput!): Stock!
+  Stock_deleteOne(deleteInput: StockDeleteInput!): Boolean!
+}
+
+type Query {
+  Stock_findOne(findOneInput: StockFindOneInput!): Stock
+  Stock_findMany(findManyInput: StockFindManyInput!): [Stock]!
+}
+
+type Stock {
+  uuid: String!
+  count: Int!
+  aisle: Aisle
+  product: Product
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input StockCreateInput {
+  count: Int!
+  aisleUuid: String!
+  productUuid: String!
+}
+
+input StockUpdateInput {
+  uuid: String!
+  count: Int
+}
+
+input StockFindOneInput {
+  where: StockSearchFieldsInput
+}
+
+input StockFindManyInput {
+  skip: Int
+  take: Int
+  order: StockOrderByInput
+  where: StockSearchFieldsInput
+}
+
+input StockOrderByInput {
+  name: OrderByEnum
+}
+
+input StockSearchFieldsInput {
+  uuid: String
+  name: String
+}
+
+input StockDeleteInput {
+  uuid: String!
+}
+
+extend enum PermissionNames {
+  STOCK_CREATE_ANY
+  STOCK_READ_ANY
+  STOCK_UPDATE_ANY
+  STOCK_DELETE_ANY
+  STOCK_CREATE_OWN
+  STOCK_READ_OWN
+  STOCK_UPDATE_OWN
+  STOCK_DELETE_OWN
+}

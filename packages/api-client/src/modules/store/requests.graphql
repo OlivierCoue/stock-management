@@ -1,0 +1,16 @@
+fragment FRAGMENT_Store_fields on Store {
+  uuid
+  name
+}
+
+query QUERY_Store_findMany($input: StoreFindManyInput!) {
+  Store_findMany(findManyInput: $input) {
+    ...FRAGMENT_Store_fields
+  }
+}
+
+query QUERY_Store_findOne($input: StoreFindOneInput!) {
+  Store_findOne(findOneInput: $input) {
+    ...FRAGMENT_Store_fields
+  }
+}

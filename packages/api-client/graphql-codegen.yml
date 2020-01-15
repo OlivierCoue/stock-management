@@ -1,0 +1,17 @@
+schema: '../api-server/src/**/*.graphql'
+documents: 'src/modules/**/*.graphql'
+generates:
+  src/graphql/schema.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+    config:
+      maybeValue: T | undefined # TODO: better management of the optional types & Maybe value
+  src/graphql/requests.d.ts:
+    plugins:
+      - 'typescript-graphql-files-modules'
+overwrite: true
+# Note: disabled until this issue has been resolved: https://github.com/dotansimha/graphql-code-generator/issues/2402
+#hooks:
+#  afterAllFileWrite:
+#    - prettier --write

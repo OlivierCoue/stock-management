@@ -1,0 +1,15 @@
+fragment FRAGMENT_User_fields on User {
+  uuid
+  firstName
+  lastName
+  email
+  role {
+    name
+  }
+}
+
+query QUERY_User_getCurrent {
+  User_getCurrent {
+    ...FRAGMENT_User_fields
+  }
+}

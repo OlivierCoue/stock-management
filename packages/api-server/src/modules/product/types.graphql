@@ -1,0 +1,67 @@
+scalar Date
+
+type Mutation {
+  Product_createOne(createInput: ProductCreateInput!): Product!
+  Product_updateOne(updateInput: ProductUpdateInput!): Product!
+  Product_deleteOne(deleteInput: ProductDeleteInput!): Boolean!
+}
+
+type Query {
+  Product_findOne(findOneInput: ProductFindOneInput!): Product
+  Product_findMany(findManyInput: ProductFindManyInput!): [Product]!
+}
+
+type Product {
+  uuid: String!
+  name: String!
+  price: Int!
+  usedInStocks: [Stock]
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input ProductCreateInput {
+  name: String!
+  price: Int!
+}
+
+input ProductUpdateInput {
+  uuid: String!
+  name: String
+  price: Int
+}
+
+input ProductFindOneInput {
+  where: ProductSearchFieldsInput
+}
+
+input ProductFindManyInput {
+  skip: Int
+  take: Int
+  order: ProductOrderByInput
+  where: ProductSearchFieldsInput
+}
+
+input ProductOrderByInput {
+  name: OrderByEnum
+}
+
+input ProductSearchFieldsInput {
+  uuid: String
+  name: String
+}
+
+input ProductDeleteInput {
+  uuid: String!
+}
+
+extend enum PermissionNames {
+  PRODUCT_CREATE_ANY
+  PRODUCT_READ_ANY
+  PRODUCT_UPDATE_ANY
+  PRODUCT_DELETE_ANY
+  PRODUCT_CREATE_OWN
+  PRODUCT_READ_OWN
+  PRODUCT_UPDATE_OWN
+  PRODUCT_DELETE_OWN
+}

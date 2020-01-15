@@ -1,0 +1,29 @@
+{
+  "name": "@stock-management/api-client",
+  "version": "0.0.0",
+  "scripts": {
+    "env:cmd": "env-cmd -f ../../.env",
+    "env:cmd-cross": "yarn run env:cmd cross-env",
+    "build:graphql": "graphql-codegen --config graphql-codegen.yml",
+    "build:cpx": "cpx \"src/**/*.graphql\" lib",
+    "build:tsc": "tsc",
+    "start:development": "yarn run clean:build && concurrently --kill-others --names \"graphql,cpx,tsc\" \"yarn run build:graphql --watch\" \"yarn run build:cpx --watch\" \"yarn run build:tsc --watch\"",
+    "clean": "yarn run clean:build",
+    "clean:build": "shx rm -rf lib"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "1.6.3",
+    "apollo-client": "2.6.4",
+    "apollo-link": "1.2.13",
+    "apollo-link-error": "1.1.12",
+    "apollo-upload-client": "11.0.0",
+    "graphql": "14.5.6",
+    "react-apollo-network-status": "1.1.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/typescript-graphql-files-modules": "1.7.0",
+    "@graphql-codegen/typescript-operations": "1.7.0",
+    "@types/apollo-upload-client": "8.1.3"
+  },
+  "private": true
+}

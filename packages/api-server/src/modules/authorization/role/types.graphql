@@ -1,0 +1,72 @@
+type Mutation {
+  Role_createOne(createInput: RoleCreateInput!): Role!
+  Role_createMany(createInputs: [RoleCreateInput]!): [Role]!
+  Role_updateOne(updateInput: RoleUpdateInput!): Role!
+  Role_updateMany(updateInputs: [RoleUpdateInput]!): [Role]!
+  Role_deleteOne(deleteInput: RoleDeleteInput!): Boolean!
+  Role_deleteMany(deleteInputs: [RoleDeleteInput]!): [Boolean]!
+}
+
+type Query {
+  Role_findOne(findOneInput: RoleFindOneInput!): Role
+  Role_findMany(findManyInput: RoleFindManyInput!): [Role]!
+}
+
+type Role {
+  uuid: String!
+  name: String
+  permissionNames: [PermissionNames]
+  usersCount: Int!
+}
+
+input RoleCreateInput {
+  name: String!
+  permissions: [PermissionNames]!
+}
+
+input RoleUpdateInput {
+  uuid: String!
+  name: String
+  permissions: [PermissionNames]
+}
+
+input RoleDeleteInput {
+  uuid: String!
+}
+
+input RoleFindOneInput {
+  where: RoleSearchFieldsInput
+}
+
+input RoleFindManyInput {
+  order: RoleOrderByInput
+  skip: Int
+  take: Int
+  where: RoleSearchFieldsInput
+}
+
+input RoleOrderByInput {
+  name: OrderByEnum
+}
+
+input RoleSearchFieldsInput {
+  uuid: String
+  name: String
+}
+
+input RoleSearchManyInput {
+  skip: Int
+  take: Int
+  query: String
+}
+
+extend enum PermissionNames {
+  ROLE_CREATE_ANY
+  ROLE_READ_ANY
+  ROLE_UPDATE_ANY
+  ROLE_DELETE_ANY
+  ROLE_CREATE_OWN
+  ROLE_READ_OWN
+  ROLE_UPDATE_OWN
+  ROLE_DELETE_OWN
+}

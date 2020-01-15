@@ -1,0 +1,119 @@
+{
+  "name": "stock-management",
+  "version": "0.0.0",
+  "description": "[PROJECT DESCRIPTION]",
+  "keywords": [
+    "polytech",
+    "english",
+    "dictionary"
+  ],
+  "license": "UNLICENSED",
+  "contributors": [
+    {
+      "name": "Olivier Coué",
+      "email": "olivier.c@my-serious-game.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/Loic_Gervois/projetdico"
+  },
+  "scripts": {
+    "postinstall": "shx cp -n .env.example .env && lerna run postinstall && yarn run build",
+    "build": "lerna run build:lingui && lerna run build:graphql && lerna run build:cpx && tsc --build",
+    "bundle:local": "lerna run bundle:local",
+    "bundle:test": "lerna run bundle:test",
+    "bundle:staging": "lerna run bundle:staging",
+    "bundle:live": "lerna run bundle:live",
+    "start:development": "lerna run start:development --stream",
+    "release": "yarn run build && lerna publish from-git",
+    "format": "prettier --write '{**/.*.{js,jsx,ts,tsx,mjs,graphql,gql,json,yaml,yml,html,css,md},**/*.{js,jsx,ts,tsx,mjs,graphql,gql,json,yaml,yml,html,css,md}}'",
+    "lint": "yarn run lint:es && yarn run lint:style && yarn run lint:docker",
+    "lint:es": "eslint --fix '{**/.*.{js,jsx,ts,tsx,mjs},**/*.{js,jsx,ts,tsx,mjs}}'",
+    "lint:style": "stylelint '**/*.{js,jsx,ts,tsx,mjs}'",
+    "lint:docker": "lerna run lint:docker",
+    "test": "yarn run lint",
+    "update:check": "ncu && lerna exec --concurrency 1 ncu",
+    "update:latest": "ncu -u && lerna exec --concurrency 1 \"ncu -u\"",
+    "clean": "lerna run clean && lerna clean --yes && shx rm -rf node_modules",
+    "reinstall": "yarn run clean && yarn install"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.0",
+    "@commitlint/cli": "8.2.0",
+    "@graphql-codegen/cli": "1.7.0",
+    "@graphql-codegen/typescript": "1.7.0",
+    "@mysg/babel-config": "0.6.1",
+    "@mysg/commitlint-config": "0.3.0",
+    "@mysg/eslint-config": "0.8.2",
+    "@mysg/prettier-config": "0.3.0",
+    "@mysg/stylelint-config": "0.4.0",
+    "@mysg/typescript-config": "0.6.0",
+    "@mysg/webpack-config": "0.14.1",
+    "@types/express": "4.17.1",
+    "@types/jest": "24.0.18",
+    "@types/node": "10.14.18",
+    "@types/shelljs": "0.8.5",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.9.0",
+    "concurrently": "4.1.2",
+    "core-js": "3.2.1",
+    "cpx": "1.5.0",
+    "cross-env": "5.2.1",
+    "dockerlint": "0.3.9",
+    "env-cmd": "10.0.1",
+    "eslint": "6.4.0",
+    "esm": "3.2.25",
+    "husky": "3.0.5",
+    "jest": "24.9.0",
+    "jest-transform-graphql": "2.1.0",
+    "lerna": "3.16.4",
+    "lint-staged": "9.2.5",
+    "ndb": "1.1.5",
+    "npm-check-updates": "3.1.23",
+    "prettier": "1.18.2",
+    "regenerator-runtime": "0.13.3",
+    "shelljs": "0.8.3",
+    "shx": "0.3.2",
+    "stylelint": "10.1.0",
+    "ts-node": "8.4.1",
+    "ts-jest": "24.1.0",
+    "typescript": "3.5.3",
+    "webpack": "4.40.2",
+    "webpack-cli": "3.3.8"
+  },
+  "engines": {
+    "node": ">=10.16",
+    "yarn": ">=1.16"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged && ./scripts/git-hook-build.sh"
+    }
+  },
+  "lint-staged": {
+    "*.{graphql,gql,json,yaml,yml,html,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx,mjs}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{js,jsx,tsx,mjs}": [
+      "stylelint",
+      "git add"
+    ],
+    "*Dockerfile*": [
+      "dockerlint",
+      "git add"
+    ]
+  }
+}

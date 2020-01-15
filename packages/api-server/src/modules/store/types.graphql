@@ -1,0 +1,63 @@
+scalar Date
+
+type Mutation {
+  Store_createOne(createInput: StoreCreateInput!): Store!
+  Store_updateOne(updateInput: StoreUpdateInput!): Store!
+  Store_deleteOne(deleteInput: StoreDeleteInput!): Boolean!
+}
+
+type Query {
+  Store_findOne(findOneInput: StoreFindOneInput!): Store
+  Store_findMany(findManyInput: StoreFindManyInput!): [Store]!
+}
+
+type Store {
+  uuid: String!
+  name: String!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input StoreCreateInput {
+  name: String!
+}
+
+input StoreUpdateInput {
+  uuid: String!
+  name: String
+}
+
+input StoreFindOneInput {
+  where: StoreSearchFieldsInput
+}
+
+input StoreFindManyInput {
+  skip: Int
+  take: Int
+  order: StoreOrderByInput
+  where: StoreSearchFieldsInput
+}
+
+input StoreOrderByInput {
+  name: OrderByEnum
+}
+
+input StoreSearchFieldsInput {
+  uuid: String
+  name: String
+}
+
+input StoreDeleteInput {
+  uuid: String!
+}
+
+extend enum PermissionNames {
+  STORE_CREATE_ANY
+  STORE_READ_ANY
+  STORE_UPDATE_ANY
+  STORE_DELETE_ANY
+  STORE_CREATE_OWN
+  STORE_READ_OWN
+  STORE_UPDATE_OWN
+  STORE_DELETE_OWN
+}

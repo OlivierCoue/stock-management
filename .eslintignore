@@ -1,0 +1,27 @@
+# Project #
+###########
+/packages/*/dist
+/packages/*/lib
+/packages/*/node_modules
+/packages/*/tests/coverage
+
+# API Client #
+##############
+/packages/api-client/src/graphql/requests.d.ts
+/packages/api-client/src/graphql/schema.ts
+
+# API Server #
+##############
+/packages/api-server/dumps/*
+/packages/api-server/local/*/*
+/packages/api-server/src/graphql/schema.ts
+
+# Static Web Application #
+##########################
+/packages/static-web-app/.cache
+/packages/static-web-app/public
+
+# Web Application #
+##############
+/packages/web-app/src/locales/_build
+/packages/web-app/src/locales/**/*.js

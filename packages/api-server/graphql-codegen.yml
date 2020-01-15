@@ -1,0 +1,17 @@
+schema: 'src/**/*.graphql'
+generates:
+  src/graphql/schema.ts:
+    plugins:
+      - 'typescript'
+    config:
+      namingConvention: keep
+      skipTypename: true
+      declarationKind:
+        type: 'interface'
+        input: 'interface'
+      maybeValue: T # TODO: better management of the optional types & Maybe value
+overwrite: true
+# Note: disabled until this issue has been resolved: https://github.com/dotansimha/graphql-code-generator/issues/2402
+#hooks:
+#  afterAllFileWrite:
+#    - prettier --write

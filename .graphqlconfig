@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "[PROJECT NAME]": {
+      "includes": [
+        "node_modules/@mysg/**/lib/**/*.graphql",
+        "packages/**/src/**/*.graphql"
+      ],
+      "extensions": {
+        "endpoints": {
+          "default": "http://localhost:3000/graphql"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "@mysg/typescript-config/lib/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext"
+  },
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/api-client"
+    },
+    {
+      "path": "./packages/api-server"
+    },
+    {
+      "path": "./packages/web-app"
+    }
+  ]
+}

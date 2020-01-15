@@ -1,0 +1,144 @@
+scalar Date
+
+type Mutation {
+  User_register(createInput: UserCreateInput!): User!
+  User_createOne(createInput: UserCreateInput!): User!
+  User_createMany(createInputs: [UserCreateInput]!): [User]!
+  User_updateOne(updateInput: UserUpdateInput!): User!
+  User_updateMany(updateInput: [UserUpdateInput]!): [User]!
+  User_deleteOne(deleteInput: UserDeleteInput!): Boolean!
+  User_deleteMany(deleteInputs: [UserDeleteInput]!): [Boolean]!
+  User_activateAccount(userActivateAccountInput: UserActivateAccountInput): Boolean!
+  User_sendPasswordResetToken(email: String): Boolean!
+  User_setPasswordFromPasswordResetToken(passwordResetInput: UserPasswordResetInput): Boolean!
+  User_sendVerifyEmailToken(uuid: String): Boolean!
+  User_sendActivateAccountToken(uuid: String): Boolean!
+  User_verifyEmail(userVerifyEmailInput: UserVerifyEmailInput): Boolean!
+  User_parseXml: Boolean!
+}
+
+type Query {
+  User_getCurrent: User
+  User_findOne(findOneInput: UserFindOneInput!): User
+  User_findMany(findManyInput: UserFindManyInput!): [User]!
+  User_findManyByPermission(input: UserFindManyByPermissionInput!): [User]!
+  User_getActivationTokenData(token: String!): UserActivationTokenData
+  User_getResetPasswordTokenData(token: String!): String
+}
+
+type User {
+  uuid: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  jobTitle: String
+  sellerInAisle: Aisle
+  role: Role
+  status: AccountStatus
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type UserActivationTokenData {
+  firstName: String!
+  email: String!
+}
+
+input UserCreateInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  roleUuid: String
+  roleName: String
+  password: String!
+}
+
+input UserFindOneInput {
+  where: UserSearchFieldsInput
+}
+
+input UserFindManyInput {
+  skip: Int
+  take: Int
+  order: UserOrderByInput
+  where: UserSearchFieldsInput
+}
+
+input UserFindManyWithFiltersInput {
+  skip: Int
+  take: Int
+  dateStart: String
+  dateEnd: String
+  rolesUuids: [String]
+}
+
+input UserFindManyByPermissionInput {
+  permissionName: PermissionNames!
+  skip: Int
+  take: Int
+  order: UserOrderByInput
+  where: UserSearchFieldsInput
+}
+
+input UserOrderByInput {
+  email: OrderByEnum
+  firstName: OrderByEnum
+  lastName: OrderByEnum
+}
+
+input UserSearchFieldsInput {
+  uuid: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input UserSearchManyInput {
+  skip: Int
+  take: Int
+  query: String
+}
+
+input UserUpdateInput {
+  uuid: String!
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  roleUuid: String
+}
+
+input UserDeleteInput {
+  uuid: String!
+}
+
+input UserPasswordResetInput {
+  token: String!
+  password: String!
+}
+
+input UserActivateAccountInput {
+  token: String!
+  password: String!
+}
+
+input UserVerifyEmailInput {
+  token: String!
+}
+
+enum AccountStatus {
+  PENDING_ACTIVATION
+  ENABLED
+  DISABLED
+}
+
+extend enum PermissionNames {
+  USER_CREATE_ANY
+  USER_READ_ANY
+  USER_UPDATE_ANY
+  USER_DELETE_ANY
+  USER_CREATE_OWN
+  USER_READ_OWN
+  USER_UPDATE_OWN
+  USER_DELETE_OWN
+}

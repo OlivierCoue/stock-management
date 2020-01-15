@@ -1,0 +1,7 @@
+"ISO 639-1 language code"
+enum LanguageCode {
+  "English"
+  en
+  "French"
+  fr
+}

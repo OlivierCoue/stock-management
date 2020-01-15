@@ -1,0 +1,24 @@
+# Files in .ts will never contains styled-components code, only .tsx one
+*.ts
+
+# Project #
+###########
+/packages/*/dist
+/packages/*/lib
+/packages/*/node_modules
+/packages/*/tests/coverage
+
+# API Server #
+##############
+/packages/api-server/dumps/*
+/packages/api-server/local/*/*
+
+# Static Web Application #
+##########################
+/packages/static-web-app/.cache
+/packages/static-web-app/public
+
+# Web Application #
+##############
+/packages/web-app/src/locales/_build
+/packages/web-app/src/locales/**/*.js

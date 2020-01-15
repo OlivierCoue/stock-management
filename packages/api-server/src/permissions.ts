@@ -1,0 +1,5 @@
+import './modules/user/permission'
+import './modules/authorization/role/permission'
+import './modules/store/permission'
+import './modules/store/aisle/permission'
+import './modules/store/aisle/stock/permission'

@@ -1,0 +1,47 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - develop
+      - staging
+      - master
+
+stages:
+  - stage: TestBuild
+    displayName: Test & Build stage
+    jobs:
+      - job: TestBuild
+        displayName: Build
+        pool:
+          vmImage: 'ubuntu-latest'
+        timeoutInMinutes: 15
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '10.15.x'
+            displayName: 'Install Node.js'
+          - script: |
+              yarn install
+              cp .env.example .env
+            displayName: 'Install dependencies'
+            env:
+              NPM_TOKEN: $(npmToken)
+          - script: yarn run test
+            displayName: 'Run tests'
+            env:
+              NPM_TOKEN: $(npmToken)
+          - script: yarn run build:local
+            condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/staging'), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+            displayName: 'Build local apps'
+            env:
+              NPM_TOKEN: $(npmToken)
+          - script: yarn run build:staging
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
+            displayName: 'Build staging apps'
+            env:
+              NPM_TOKEN: $(npmToken)
+          - script: yarn run build:live
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+            displayName: 'Build live apps'
+            env:
+              NPM_TOKEN: $(npmToken)

@@ -1,0 +1,67 @@
+scalar Date
+
+type Mutation {
+  Aisle_createOne(createInput: AisleCreateInput!): Aisle!
+  Aisle_updateOne(updateInput: AisleUpdateInput!): Aisle!
+  Aisle_deleteOne(deleteInput: AisleDeleteInput!): Boolean!
+}
+
+type Query {
+  Aisle_findOne(findOneInput: AisleFindOneInput!): Aisle
+  Aisle_findMany(findManyInput: AisleFindManyInput!): [Aisle]!
+}
+
+type Aisle {
+  uuid: String!
+  name: String!
+  store: Store
+  sellers: [User]
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+input AisleCreateInput {
+  name: String!
+  storeUuid: String!
+  sellersUuids: [String!]!
+}
+
+input AisleUpdateInput {
+  uuid: String!
+  name: String
+}
+
+input AisleFindOneInput {
+  where: AisleSearchFieldsInput
+}
+
+input AisleFindManyInput {
+  skip: Int
+  take: Int
+  order: AisleOrderByInput
+  where: AisleSearchFieldsInput
+}
+
+input AisleOrderByInput {
+  name: OrderByEnum
+}
+
+input AisleSearchFieldsInput {
+  uuid: String
+  name: String
+}
+
+input AisleDeleteInput {
+  uuid: String!
+}
+
+extend enum PermissionNames {
+  AISLE_CREATE_ANY
+  AISLE_READ_ANY
+  AISLE_UPDATE_ANY
+  AISLE_DELETE_ANY
+  AISLE_CREATE_OWN
+  AISLE_READ_OWN
+  AISLE_UPDATE_OWN
+  AISLE_DELETE_OWN
+}
