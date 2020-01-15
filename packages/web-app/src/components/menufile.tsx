@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { rootAction, TRootState } from '../store'
+import { generateRoutePath, RoutePath } from '../app/router-config'
 
 interface IProps {}
 
@@ -33,6 +34,10 @@ class MenuFile extends React.Component<TProps, IState> {
     authLogoutRequest()
   }
 
+  onUserListClicked = () => {
+    window.document.location.href = generateRoutePath(RoutePath.USER_LIST, {})
+  }
+
   render() {
     const { openMenu } = this.state
 
@@ -50,7 +55,8 @@ class MenuFile extends React.Component<TProps, IState> {
           open={Boolean(openMenu)}
         >
           <div>
-            <MenuItem onClick={this.onLogoutClicked}>Logout</MenuItem>
+            <MenuItem onClick={this.onUserListClicked}>Liste des utilisateurs</MenuItem>
+            <MenuItem onClick={this.onLogoutClicked}>Se déconnecter</MenuItem>
           </div>
         </Menu>
       </div>

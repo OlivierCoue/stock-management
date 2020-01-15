@@ -760,6 +760,18 @@ export type Fragment_User_FieldsFragment = (
   )> }
 );
 
+export type Query_User_FindManyQueryVariables = {
+  input: UserFindManyInput
+};
+
+
+export type Query_User_FindManyQuery = (
+  { __typename?: 'Query' }
+  & { User_findMany: Array<Maybe<{ __typename?: 'User' }
+    & Fragment_User_FieldsFragment
+  >> }
+);
+
 export type Query_User_GetCurrentQueryVariables = {};
 
 

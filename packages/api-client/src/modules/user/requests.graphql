@@ -8,6 +8,12 @@ fragment FRAGMENT_User_fields on User {
   }
 }
 
+query QUERY_User_findMany($input: UserFindManyInput!) {
+  User_findMany(findManyInput: $input) {
+    ...FRAGMENT_User_fields
+  }
+}
+
 query QUERY_User_getCurrent {
   User_getCurrent {
     ...FRAGMENT_User_fields

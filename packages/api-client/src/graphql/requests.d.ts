@@ -7,6 +7,7 @@ export const FRAGMENT_Store_allFields: DocumentNode;
 export const QUERY_Store_findMany: DocumentNode;
 export const QUERY_Store_findOne: DocumentNode;
 export const FRAGMENT_User_fields: DocumentNode;
+export const QUERY_User_findMany: DocumentNode;
 export const QUERY_User_getCurrent: DocumentNode;
 
   export default defaultDocument;
