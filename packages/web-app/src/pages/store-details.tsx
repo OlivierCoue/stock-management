@@ -83,8 +83,18 @@ export class StoreDetails extends React.Component<TProps, IState> {
                   <ColumnContainer>
                     <h6>Détails du rayon : {selectedAisle.name}</h6>
                     <ul>
-                      <li>article1</li>
-                      <li>article1</li>
+                      {selectedAisle.stocks &&
+                        selectedAisle.stocks.map(
+                          (stock) =>
+                            stock &&
+                            stock.count > 0 && (
+                              <li key={stock.uuid}>
+                                <p>
+                                  produit: <b>{stock.product && stock.product.name}</b> count: <b>{stock.count}</b>
+                                </p>
+                              </li>
+                            )
+                        )}
                     </ul>
                   </ColumnContainer>
                 </ColumnContainer>

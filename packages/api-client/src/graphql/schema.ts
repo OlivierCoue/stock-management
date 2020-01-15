@@ -719,6 +719,10 @@ export type Fragment_Store_AllFieldsFragment = (
     )>, stocks: Maybe<Array<Maybe<(
       { __typename?: 'Stock' }
       & Pick<Stock, 'count'>
+      & { product: Maybe<(
+        { __typename?: 'Product' }
+        & Pick<Product, 'name' | 'price'>
+      )> }
     )>>> }
   )>>> }
 );

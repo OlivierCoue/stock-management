@@ -15,6 +15,10 @@ fragment FRAGMENT_Store_allFields on Store {
     }
     stocks {
       count
+      product {
+        name
+        price
+      }
     }
     createdAt
     updatedAt
