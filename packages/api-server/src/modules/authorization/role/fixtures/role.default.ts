@@ -25,5 +25,20 @@ export const defaultRoles: { [key: string]: PermissionNames[] } = {
     PermissionNames.STORE_READ_ANY,
     PermissionNames.STORE_UPDATE_ANY,
     PermissionNames.STORE_DELETE_ANY,
+
+    PermissionNames.AISLE_CREATE_ANY,
+    PermissionNames.AISLE_READ_ANY,
+    PermissionNames.AISLE_UPDATE_ANY,
+    PermissionNames.AISLE_DELETE_ANY,
+
+    PermissionNames.STOCK_CREATE_ANY,
+    PermissionNames.STOCK_READ_ANY,
+    PermissionNames.STOCK_UPDATE_ANY,
+    PermissionNames.STOCK_DELETE_ANY,
+
+    PermissionNames.PRODUCT_CREATE_ANY,
+    PermissionNames.PRODUCT_READ_ANY,
+    PermissionNames.PRODUCT_UPDATE_ANY,
+    PermissionNames.PRODUCT_DELETE_ANY,
   ],
 }

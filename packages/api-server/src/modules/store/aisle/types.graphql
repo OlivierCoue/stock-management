@@ -15,7 +15,7 @@ type Aisle {
   uuid: String!
   name: String!
   store: Store
-  sellers: [User]
+  seller: User
   createdAt: Date!
   updatedAt: Date!
 }
@@ -23,7 +23,7 @@ type Aisle {
 input AisleCreateInput {
   name: String!
   storeUuid: String!
-  sellersUuids: [String!]!
+  sellerUuid: String!
 }
 
 input AisleUpdateInput {

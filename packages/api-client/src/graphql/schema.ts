@@ -20,7 +20,7 @@ export type Aisle = {
   uuid: Scalars['String'],
   name: Scalars['String'],
   store?: Maybe<Store>,
-  sellers?: Maybe<Array<Maybe<User>>>,
+  seller?: Maybe<User>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 };
@@ -28,7 +28,7 @@ export type Aisle = {
 export type AisleCreateInput = {
   name: Scalars['String'],
   storeUuid: Scalars['String'],
-  sellersUuids: Array<Scalars['String']>,
+  sellerUuid: Scalars['String'],
 };
 
 export type AisleDeleteInput = {

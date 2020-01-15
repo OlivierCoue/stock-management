@@ -26,7 +26,7 @@ export class AisleService implements ITypeOrmService<AisleEntity> {
     createInput: AisleCreateInput,
     options: IServiceBaseOptions = getDefaultServiceOptions()
   ): Promise<AisleEntity> {
-    const { name, storeUuid, sellersUuids } = createInput
+    const { name, storeUuid, sellerUuid } = createInput
     const { relations, customQueryRunner } = options
 
     const aisleRepository = customQueryRunner
@@ -34,11 +34,9 @@ export class AisleService implements ITypeOrmService<AisleEntity> {
       : this.aisleRepository
 
     const store = await this.storeService.findOneOrFail({ where: { uuid: storeUuid } })
-    const sellers = await Promise.all(
-      sellersUuids.map((sellerUuid) => this.userService.findOneOrFail({ where: { uuid: sellerUuid } }))
-    )
+    const seller = await this.userService.findOneOrFail({ where: { uuid: sellerUuid } })
 
-    const dryAisleRecord = new AisleEntity({ name, store, sellers })
+    const dryAisleRecord = new AisleEntity({ name, store, seller })
     const { id } = await aisleRepository.save(dryAisleRecord)
 
     return this.findOneOrFail({ where: { id }, relations }, customQueryRunner)

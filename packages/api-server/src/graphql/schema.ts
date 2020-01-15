@@ -19,7 +19,7 @@ export interface Aisle {
   uuid: Scalars['String'],
   name: Scalars['String'],
   store?: Maybe<Store>,
-  sellers?: Maybe<Array<Maybe<User>>>,
+  seller?: Maybe<User>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 }
@@ -27,7 +27,7 @@ export interface Aisle {
 export interface AisleCreateInput {
   name: Scalars['String'],
   storeUuid: Scalars['String'],
-  sellersUuids: Array<Scalars['String']>,
+  sellerUuid: Scalars['String'],
 }
 
 export interface AisleDeleteInput {
