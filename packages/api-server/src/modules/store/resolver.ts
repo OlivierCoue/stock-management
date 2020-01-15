@@ -17,7 +17,7 @@ import { AuthorizationResources } from '../authorization/permission-builder'
 
 import { StoreService } from './service'
 
-const commonRelationsIncluded = ['aisles', 'aisles.sellers', 'aisles.stocks', 'aisles.stocks.product']
+const commonRelationsIncluded = ['aisles', 'aisles.seller', 'aisles.stocks', 'aisles.stocks.product']
 
 @Resolver('Store')
 @ResolverPrefix('Store_')

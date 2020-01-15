@@ -15,7 +15,7 @@ interface IState {
   stores: Fragment_Store_FieldsFragment[]
 }
 
-export class Home extends React.Component<TProps, IState> {
+export class StoreList extends React.Component<TProps, IState> {
   constructor(props: TProps) {
     super(props)
     // eslint-disable-next-line react/state-in-constructor
@@ -31,7 +31,6 @@ export class Home extends React.Component<TProps, IState> {
       take: 100,
       skip: 0,
     })
-    // @ts-ignore
     this.setState({ stores: loadedStores })
   }
 
@@ -43,9 +42,7 @@ export class Home extends React.Component<TProps, IState> {
         <ul>
           {stores.map((store) => (
             <li key={store.uuid}>
-              <Link to={generateRoutePath(RoutePath.WORD_CARD_DETAILS, { wordCardUuid: store.uuid })}>
-                {store.name}
-              </Link>
+              <Link to={generateRoutePath(RoutePath.STORE_DETAILS, { storeUuid: store.uuid })}>{store.name}</Link>
             </li>
           ))}
         </ul>
@@ -61,4 +58,4 @@ function mapStateToProps({ i18n }: TRootState) {
 export default connect(
   mapStateToProps,
   rootAction
-)(Home)
+)(StoreList)

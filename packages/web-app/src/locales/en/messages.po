@@ -13,6 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/home.tsx:54
+#: src/pages/store-list.tsx:54
 msgid "home-title"
 msgstr "Hello world!"

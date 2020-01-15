@@ -3,6 +3,24 @@ fragment FRAGMENT_Store_fields on Store {
   name
 }
 
+fragment FRAGMENT_Store_allFields on Store {
+  uuid
+  name
+  aisles {
+    uuid
+    name
+    seller {
+      firstName
+      lastName
+    }
+    stocks {
+      count
+    }
+    createdAt
+    updatedAt
+  }
+}
+
 query QUERY_Store_findMany($input: StoreFindManyInput!) {
   Store_findMany(findManyInput: $input) {
     ...FRAGMENT_Store_fields
@@ -11,6 +29,6 @@ query QUERY_Store_findMany($input: StoreFindManyInput!) {
 
 query QUERY_Store_findOne($input: StoreFindOneInput!) {
   Store_findOne(findOneInput: $input) {
-    ...FRAGMENT_Store_fields
+    ...FRAGMENT_Store_allFields
   }
 }

@@ -20,6 +20,7 @@ export interface Aisle {
   name: Scalars['String'],
   store?: Maybe<Store>,
   seller?: Maybe<User>,
+  stocks?: Maybe<Array<Maybe<Stock>>>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 }
@@ -554,6 +555,7 @@ export interface StockUpdateInput {
 export interface Store {
   uuid: Scalars['String'],
   name: Scalars['String'],
+  aisles?: Maybe<Array<Maybe<Aisle>>>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 }

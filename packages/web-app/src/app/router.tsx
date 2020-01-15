@@ -51,7 +51,12 @@ class Router extends React.Component<TProps> {
       case RouteType.AUTH: {
         if (currentUser) {
           return (
-            <Redirect exact from={path} key={`${path}->${RoutePath.ROOT}`} to={generateRoutePath(RoutePath.ROOT, {})} />
+            <Redirect
+              exact
+              from={path}
+              key={`${path}->${RoutePath.STORE_LIST}`}
+              to={generateRoutePath(RoutePath.STORE_LIST, {})}
+            />
           )
         }
 
@@ -124,8 +129,13 @@ const routes: IRouteParams[] = [
    * Root
    */
   {
-    Component: lazyWP(() => import('../pages/home')),
-    path: RoutePath.ROOT,
+    Component: lazyWP(() => import('../pages/store-list')),
+    path: RoutePath.STORE_LIST,
+    type: RouteType.PRIVATE,
+  },
+  {
+    Component: lazyWP(() => import('../pages/store-details')),
+    path: RoutePath.STORE_DETAILS,
     type: RouteType.PRIVATE,
   },
   {

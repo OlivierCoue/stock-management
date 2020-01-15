@@ -39,7 +39,7 @@ class MenuFile extends React.Component<TProps, IState> {
     return (
       <div>
         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.toggleMenu}>
-          <DehazeIcon />
+          <MenuIcon />
         </Button>
         <Menu
           keepMounted
@@ -49,16 +49,18 @@ class MenuFile extends React.Component<TProps, IState> {
           onClose={this.toggleMenu}
           open={Boolean(openMenu)}
         >
-          <Div>
+          <div>
             <MenuItem onClick={this.onLogoutClicked}>Logout</MenuItem>
-          </Div>
+          </div>
         </Menu>
       </div>
     )
   }
 }
 
-const Div = styled.div``
+const MenuIcon = styled(DehazeIcon)`
+  color: white;
+`
 
 function mapStateToProps({ user }: TRootState) {
   return { currentUser: user.current }

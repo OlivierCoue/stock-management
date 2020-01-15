@@ -13,22 +13,30 @@ export function generateRoutePath<T extends keyof IRoutePathParams>(path: T, par
  * Route paths
  */
 export enum RoutePath {
-  ROOT = '/',
-
   AUTH_LOGIN = '/login',
 
-  WORD_CARD_DETAILS = '/w/:wordCardUuid',
+  STORE_LIST = '/',
+
+  STORE_DETAILS = '/store/:storeUuid',
+
+  USER_LIST = '/users',
+
+  PRODUCT_LIST = '/products',
 }
 
 /**
  * Route paths params
  */
 export interface IRoutePathParams {
-  [RoutePath.ROOT]: {}
+  [RoutePath.STORE_LIST]: {}
 
   [RoutePath.AUTH_LOGIN]: {}
 
-  [RoutePath.WORD_CARD_DETAILS]: { wordCardUuid: string }
+  [RoutePath.STORE_DETAILS]: { storeUuid: string }
+
+  [RoutePath.USER_LIST]: {}
+
+  [RoutePath.PRODUCT_LIST]: {}
 }
 
 /**

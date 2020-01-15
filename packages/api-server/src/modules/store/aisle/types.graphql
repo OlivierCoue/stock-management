@@ -16,6 +16,7 @@ type Aisle {
   name: String!
   store: Store
   seller: User
+  stocks: [Stock]
   createdAt: Date!
   updatedAt: Date!
 }

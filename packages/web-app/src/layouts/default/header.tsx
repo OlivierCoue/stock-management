@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { AppBar, Toolbar, Grid } from '@material-ui/core'
+import { AppBar, Toolbar } from '@material-ui/core'
 
 import MenuFile from '../../components/menufile'
 import { rootAction, TRootState } from '../../store'
@@ -18,44 +18,39 @@ class Header extends React.Component<TProps> {
       <HeaderContainer>
         <AppBar position="static">
           <Toolbar>
-            <Grid container spacing={1}>
-              <Grid item sm={6} xs={12}>
-                <MyParaAccueil>
-                  <A href="/"> Accueil </A>
-                </MyParaAccueil>
-              </Grid>
-              <Grid item sm={6} xs={12}>
-                <DivHeaderRight>
-                  <div>
-                    {currentUser && <MyParaName>{`${currentUser.firstName} ${currentUser.lastName}`}</MyParaName>}
-                  </div>
-                  <p> {currentUser && <MenuFile />} </p>
-                </DivHeaderRight>
-              </Grid>
-            </Grid>
+            <HeaderContainer>
+              <div>
+                <PageTitle href="/">Stock Management</PageTitle>
+              </div>
+              <NameMenuContainer>
+                {currentUser && <MyParaName>{`${currentUser.firstName} ${currentUser.lastName}`}</MyParaName>}
+                <div> {currentUser && <MenuFile />} </div>
+              </NameMenuContainer>
+            </HeaderContainer>
           </Toolbar>
         </AppBar>
       </HeaderContainer>
     )
   }
 }
-const A = styled.a`
-  color: aliceblue;
-`
-const HeaderContainer = styled.header`
-  /* Some style */
-`
 
-const DivHeaderRight = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  float: right;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `
-const MyParaAccueil = styled.p`
-  font-weight: bold;
+const PageTitle = styled.a`
   color: white;
   font-size: large;
+`
+
+const NameMenuContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const MyParaName = styled.p`

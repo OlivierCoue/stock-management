@@ -21,6 +21,7 @@ export type Aisle = {
   name: Scalars['String'],
   store?: Maybe<Store>,
   seller?: Maybe<User>,
+  stocks?: Maybe<Array<Maybe<Stock>>>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 };
@@ -562,6 +563,7 @@ export type Store = {
    __typename?: 'Store',
   uuid: Scalars['String'],
   name: Scalars['String'],
+  aisles?: Maybe<Array<Maybe<Aisle>>>,
   createdAt: Scalars['Date'],
   updatedAt: Scalars['Date'],
 };
@@ -705,6 +707,22 @@ export type Fragment_Store_FieldsFragment = (
   & Pick<Store, 'uuid' | 'name'>
 );
 
+export type Fragment_Store_AllFieldsFragment = (
+  { __typename?: 'Store' }
+  & Pick<Store, 'uuid' | 'name'>
+  & { aisles: Maybe<Array<Maybe<(
+    { __typename?: 'Aisle' }
+    & Pick<Aisle, 'uuid' | 'name' | 'createdAt' | 'updatedAt'>
+    & { seller: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'firstName' | 'lastName'>
+    )>, stocks: Maybe<Array<Maybe<(
+      { __typename?: 'Stock' }
+      & Pick<Stock, 'count'>
+    )>>> }
+  )>>> }
+);
+
 export type Query_Store_FindManyQueryVariables = {
   input: StoreFindManyInput
 };
@@ -725,7 +743,7 @@ export type Query_Store_FindOneQueryVariables = {
 export type Query_Store_FindOneQuery = (
   { __typename?: 'Query' }
   & { Store_findOne: Maybe<{ __typename?: 'Store' }
-    & Fragment_Store_FieldsFragment
+    & Fragment_Store_AllFieldsFragment
   > }
 );
 
