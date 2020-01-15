@@ -51,7 +51,7 @@ export class UserEntity extends CustomBaseEntity<UserEntity> {
   @Column()
   lastName: string
 
-  @ManyToOne(() => AisleEntity, (aisle) => aisle.sellers, { persistence: false })
+  @ManyToOne(() => AisleEntity, (aisle) => aisle.seller, { persistence: false })
   sellerInAisle?: AisleEntity
 
   @OneToMany(() => SessionEntity, (session) => session.user, { persistence: false })
