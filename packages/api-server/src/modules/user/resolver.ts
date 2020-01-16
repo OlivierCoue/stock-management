@@ -1,11 +1,8 @@
-import fs from 'fs'
-
 import { Args, Context, Mutation, Query, Resolver, ResolverPrefix } from '@nestjs/graphql'
 import { GraphQLRelations } from '@mysg/nest-common'
 import { classToPlain } from 'class-transformer'
 import { UseRoles } from 'nest-access-control'
 import { forwardRef, Inject } from '@nestjs/common'
-import convert from 'xml-js'
 
 import {
   User,
@@ -33,21 +30,6 @@ const commonRelationsIncluded = ['role', 'role.permissions']
 @ResolverPrefix('User_')
 export class UserResolver {
   constructor(@Inject(forwardRef(() => UserService)) private readonly userService: UserService) {}
-
-  @Mutation()
-  parseXml() {
-    const xml = fs.readFileSync('C:\\git\\projetdico\\aus.xml', 'utf8')
-    const result1 = convert.xml2json(xml, { compact: true, spaces: 4 })
-    // console.log(result1)
-
-    fs.writeFile('C:\\git\\projetdico\\aus.json', result1, (err) => {
-      if (err) {
-        return console.log(err)
-      }
-
-      return true
-    })
-  }
 
   @Mutation()
   async register(

@@ -14,7 +14,6 @@ type Mutation {
   User_sendVerifyEmailToken(uuid: String): Boolean!
   User_sendActivateAccountToken(uuid: String): Boolean!
   User_verifyEmail(userVerifyEmailInput: UserVerifyEmailInput): Boolean!
-  User_parseXml: Boolean!
 }
 
 type Query {
