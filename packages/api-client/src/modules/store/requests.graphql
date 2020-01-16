@@ -14,14 +14,19 @@ fragment FRAGMENT_Store_allFields on Store {
       lastName
     }
     stocks {
-      count
-      product {
-        name
-        price
-      }
+      ...FRAGMENT_Stock_fields
     }
     createdAt
     updatedAt
+  }
+}
+
+fragment FRAGMENT_Stock_fields on Stock {
+  uuid
+  count
+  product {
+    name
+    price
   }
 }
 
@@ -34,5 +39,11 @@ query QUERY_Store_findMany($input: StoreFindManyInput!) {
 query QUERY_Store_findOne($input: StoreFindOneInput!) {
   Store_findOne(findOneInput: $input) {
     ...FRAGMENT_Store_allFields
+  }
+}
+
+mutation MUTATION_Stock_updateOne($input: StockUpdateInput!) {
+  Stock_updateOne(updateInput: $input) {
+    ...FRAGMENT_Stock_fields
   }
 }

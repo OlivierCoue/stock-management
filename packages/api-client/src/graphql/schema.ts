@@ -716,15 +716,19 @@ export type Fragment_Store_AllFieldsFragment = (
     & { seller: Maybe<(
       { __typename?: 'User' }
       & Pick<User, 'firstName' | 'lastName'>
-    )>, stocks: Maybe<Array<Maybe<(
-      { __typename?: 'Stock' }
-      & Pick<Stock, 'count'>
-      & { product: Maybe<(
-        { __typename?: 'Product' }
-        & Pick<Product, 'name' | 'price'>
-      )> }
-    )>>> }
+    )>, stocks: Maybe<Array<Maybe<{ __typename?: 'Stock' }
+      & Fragment_Stock_FieldsFragment
+    >>> }
   )>>> }
+);
+
+export type Fragment_Stock_FieldsFragment = (
+  { __typename?: 'Stock' }
+  & Pick<Stock, 'uuid' | 'count'>
+  & { product: Maybe<(
+    { __typename?: 'Product' }
+    & Pick<Product, 'name' | 'price'>
+  )> }
 );
 
 export type Query_Store_FindManyQueryVariables = {
@@ -749,6 +753,18 @@ export type Query_Store_FindOneQuery = (
   & { Store_findOne: Maybe<{ __typename?: 'Store' }
     & Fragment_Store_AllFieldsFragment
   > }
+);
+
+export type Mutation_Stock_UpdateOneMutationVariables = {
+  input: StockUpdateInput
+};
+
+
+export type Mutation_Stock_UpdateOneMutation = (
+  { __typename?: 'Mutation' }
+  & { Stock_updateOne: { __typename?: 'Stock' }
+    & Fragment_Stock_FieldsFragment
+   }
 );
 
 export type Fragment_User_FieldsFragment = (
