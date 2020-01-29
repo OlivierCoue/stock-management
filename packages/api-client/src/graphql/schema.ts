@@ -754,6 +754,18 @@ export type Query_Store_FindOneQuery = (
   > }
 );
 
+export type Query_Stock_FindOneQueryVariables = {
+  input: StockFindOneInput
+};
+
+
+export type Query_Stock_FindOneQuery = (
+  { __typename?: 'Query' }
+  & { Stock_findOne: Maybe<{ __typename?: 'Stock' }
+    & Fragment_Stock_FieldsFragment
+  > }
+);
+
 export type Mutation_Stock_UpdateOneMutationVariables = {
   input: StockUpdateInput
 };

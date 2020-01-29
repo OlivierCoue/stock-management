@@ -8,6 +8,7 @@ import { Button } from '@material-ui/core'
 
 import Layout from '../layouts/default'
 import { rootAction, TRootState } from '../store'
+import { generateRoutePath, RoutePath } from '../app/router-config'
 
 interface IProps {}
 
@@ -57,6 +58,11 @@ export class StoreDetails extends React.Component<TProps, IState> {
     else if (stock.count > 0) stock.count--
     await StoreService.stockUpdateOne({ uuid: stock.uuid, count: stock.count })
     this.setState({ selectedAisle })
+  }
+
+  onBuyClicked = (stockUuid: string) => {
+    const { history } = this.props
+    history.push(generateRoutePath(RoutePath.PURCHASE, { stockUuid }))
   }
 
   render() {
@@ -120,6 +126,14 @@ export class StoreDetails extends React.Component<TProps, IState> {
                                     variant="contained"
                                   >
                                     -
+                                  </Button>
+                                  <Button
+                                    color="secondary"
+                                    disabled={stock.count === 0}
+                                    onClick={() => this.onBuyClicked(stock.uuid)}
+                                    variant="contained"
+                                  >
+                                    Buy
                                   </Button>
                                 </div>
                               </ProductListElement>

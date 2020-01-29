@@ -42,6 +42,12 @@ query QUERY_Store_findOne($input: StoreFindOneInput!) {
   }
 }
 
+query QUERY_Stock_findOne($input: StockFindOneInput!) {
+  Stock_findOne(findOneInput: $input) {
+    ...FRAGMENT_Stock_fields
+  }
+}
+
 mutation MUTATION_Stock_updateOne($input: StockUpdateInput!) {
   Stock_updateOne(updateInput: $input) {
     ...FRAGMENT_Stock_fields

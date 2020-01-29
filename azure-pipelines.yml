@@ -30,18 +30,3 @@ stages:
             displayName: 'Run tests'
             env:
               NPM_TOKEN: $(npmToken)
-          - script: yarn run build:local
-            condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/staging'), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
-            displayName: 'Build local apps'
-            env:
-              NPM_TOKEN: $(npmToken)
-          - script: yarn run build:staging
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
-            displayName: 'Build staging apps'
-            env:
-              NPM_TOKEN: $(npmToken)
-          - script: yarn run build:live
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-            displayName: 'Build live apps'
-            env:
-              NPM_TOKEN: $(npmToken)

@@ -90,7 +90,6 @@ export interface Mutation {
   User_sendVerifyEmailToken: Scalars['Boolean'],
   User_sendActivateAccountToken: Scalars['Boolean'],
   User_verifyEmail: Scalars['Boolean'],
-  User_parseXml: Scalars['Boolean'],
   Role_createOne: Role,
   Role_createMany: Array<Maybe<Role>>,
   Role_updateOne: Role,

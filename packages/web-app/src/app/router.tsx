@@ -139,6 +139,11 @@ const routes: IRouteParams[] = [
     type: RouteType.PRIVATE,
   },
   {
+    Component: lazyWP(() => import('../pages/purchase')),
+    path: RoutePath.PURCHASE,
+    type: RouteType.PRIVATE,
+  },
+  {
     Component: lazyWP(() => import('../pages/user-list')),
     path: RoutePath.USER_LIST,
     type: RouteType.PRIVATE,

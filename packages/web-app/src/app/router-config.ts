@@ -22,6 +22,8 @@ export enum RoutePath {
   USER_LIST = '/users',
 
   PRODUCT_LIST = '/products',
+
+  PURCHASE = '/purchase/:stockUuid',
 }
 
 /**
@@ -37,6 +39,8 @@ export interface IRoutePathParams {
   [RoutePath.USER_LIST]: {}
 
   [RoutePath.PRODUCT_LIST]: {}
+
+  [RoutePath.PURCHASE]: { stockUuid: string }
 }
 
 /**

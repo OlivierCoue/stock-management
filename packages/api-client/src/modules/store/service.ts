@@ -12,9 +12,17 @@ import {
   Fragment_Stock_FieldsFragment,
   Mutation_Stock_UpdateOneMutation,
   Mutation_Stock_UpdateOneMutationVariables,
+  StockFindOneInput,
+  Query_Stock_FindOneQueryVariables,
+  Query_Stock_FindOneQuery,
 } from '../../internal'
 
-import { QUERY_Store_findMany, QUERY_Store_findOne, MUTATION_Stock_updateOne } from './requests.graphql'
+import {
+  QUERY_Store_findMany,
+  QUERY_Store_findOne,
+  MUTATION_Stock_updateOne,
+  QUERY_Stock_findOne,
+} from './requests.graphql'
 
 export class StoreService {
   static async findMany(input: StoreFindManyInput): Promise<Fragment_Store_FieldsFragment[]> {
@@ -46,6 +54,22 @@ export class StoreService {
     if (store === undefined) throw new Error('[Store][findOne] failed')
 
     return store
+  }
+
+  static async stockFindOne(input: StockFindOneInput): Promise<Fragment_Stock_FieldsFragment> {
+    const result = await GraphQLClient.query<Query_Stock_FindOneQuery, Query_Stock_FindOneQueryVariables>({
+      query: QUERY_Stock_findOne,
+      variables: { input },
+    })
+
+    const {
+      // @ts-ignore
+      data: { Stock_findOne: stock },
+    } = result
+
+    if (stock === undefined) throw new Error('[Store][stockFindOne] failed')
+
+    return stock
   }
 
   static async stockUpdateOne(input: StockUpdateInput): Promise<Fragment_Stock_FieldsFragment> {
