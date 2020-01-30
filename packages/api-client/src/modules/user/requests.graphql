@@ -6,6 +6,8 @@ fragment FRAGMENT_User_fields on User {
   role {
     name
   }
+  createdAt
+  updatedAt
 }
 
 query QUERY_User_findMany($input: UserFindManyInput!) {

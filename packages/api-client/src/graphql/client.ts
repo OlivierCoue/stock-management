@@ -4,6 +4,7 @@ import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { ApolloLink, FetchResult } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { createUploadLink } from 'apollo-upload-client'
+// @ts-ignore
 import { createNetworkStatusNotifier } from 'react-apollo-network-status'
 import { Observable } from 'apollo-client/util/Observable'
 

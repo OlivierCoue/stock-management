@@ -780,7 +780,7 @@ export type Mutation_Stock_UpdateOneMutation = (
 
 export type Fragment_User_FieldsFragment = (
   { __typename?: 'User' }
-  & Pick<User, 'uuid' | 'firstName' | 'lastName' | 'email'>
+  & Pick<User, 'uuid' | 'firstName' | 'lastName' | 'email' | 'createdAt' | 'updatedAt'>
   & { role: Maybe<(
     { __typename?: 'Role' }
     & Pick<Role, 'name'>

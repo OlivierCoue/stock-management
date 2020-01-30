@@ -16,6 +16,7 @@ import {
   Query_Stock_FindOneQueryVariables,
   Query_Stock_FindOneQuery,
 } from '../../internal'
+import { CustomClientError } from '../../util/error'
 
 import {
   QUERY_Store_findMany,
@@ -30,6 +31,8 @@ export class StoreService {
       query: QUERY_Store_findMany,
       variables: { input },
     })
+
+    if (result.errors) throw new CustomClientError(result.errors)
 
     const {
       data: { Store_findMany: stores },
@@ -47,6 +50,8 @@ export class StoreService {
       variables: { input },
     })
 
+    if (result.errors) throw new CustomClientError(result.errors)
+
     const {
       data: { Store_findOne: store },
     } = result
@@ -61,6 +66,8 @@ export class StoreService {
       query: QUERY_Stock_findOne,
       variables: { input },
     })
+
+    if (result.errors) throw new CustomClientError(result.errors)
 
     const {
       // @ts-ignore
@@ -80,6 +87,8 @@ export class StoreService {
       mutation: MUTATION_Stock_updateOne,
       variables: { input },
     })
+
+    if (result.errors) throw new CustomClientError(result.errors)
 
     const {
       // @ts-ignore

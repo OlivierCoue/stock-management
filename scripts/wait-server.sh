@@ -3,8 +3,8 @@ attempt_counter=0
 max_attempts=120
 
 echo "Waiting for server to be up"
-
-until curl --output /dev/null --silent --head --fail "${SERVER_URL}"; do
+echo "${SERVER_URL}"
+until curl --output /dev/null --silent --head --fail "http://localhost:3000"; do
     if [ ${attempt_counter} -eq ${max_attempts} ];then
       echo "Max attempts reached"
       exit 1

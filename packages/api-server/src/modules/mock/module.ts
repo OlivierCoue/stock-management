@@ -7,6 +7,7 @@ import { ProductModule } from '../product/module'
 
 import { MockResolver } from './resolver'
 import { MockService } from './service'
+import { MockController } from './controller'
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { MockService } from './service'
     forwardRef(() => StoreModule),
     forwardRef(() => ProductModule),
   ],
-  providers: [MockResolver, MockService],
+  providers: [MockResolver, MockService, MockController],
   exports: [],
 })
 export class MockModule {}
