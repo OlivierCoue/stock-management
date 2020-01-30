@@ -17,6 +17,7 @@ import { UserModule } from '../../src/modules/user/module'
 import { StoreModule } from '../../src/modules/store/module'
 import { MockModule } from '../../src/modules/mock/module'
 import { StoreService } from '../../src/modules/store/service'
+import { UserService } from '../../src/modules/user/service'
 
 import { testServices } from './test-context'
 
@@ -58,9 +59,11 @@ describe('Tests', () => {
     app = module.createNestApplication()
     await app.init()
     testServices.storeService = app.get<StoreService>(StoreService)
+    testServices.userService = app.get<UserService>(UserService)
   })
 
   require('./store')
+  require('./user')
 
   afterAll(async () => {
     await app.close()

@@ -6,9 +6,13 @@ describe('Store', () => {
     testContext.store1 = await testServices.storeService.create({ name: 'test-store-1' })
 
     expect(testContext.store0).toBeTruthy()
+    expect(testContext.store0.id).toBeTruthy()
+    expect(testContext.store0.uuid).toBeTruthy()
     expect(testContext.store0.name).toEqual('test-store-0')
 
     expect(testContext.store1).toBeTruthy()
+    expect(testContext.store1.id).toBeTruthy()
+    expect(testContext.store1.uuid).toBeTruthy()
     expect(testContext.store1.name).toEqual('test-store-1')
   })
 

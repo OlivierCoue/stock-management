@@ -2,6 +2,14 @@ import { PermissionNames } from '../../../../graphql/schema'
 
 export const defaultRoles: { [key: string]: PermissionNames[] } = {
   user: [PermissionNames.ROLE_READ_OWN, PermissionNames.USER_READ_OWN, PermissionNames.USER_UPDATE_OWN],
+  seller: [
+    PermissionNames.ROLE_READ_OWN,
+
+    PermissionNames.USER_CREATE_OWN,
+    PermissionNames.USER_READ_OWN,
+    PermissionNames.USER_UPDATE_OWN,
+    PermissionNames.USER_DELETE_OWN,
+  ],
   manager: [
     PermissionNames.ROLE_READ_OWN,
 
