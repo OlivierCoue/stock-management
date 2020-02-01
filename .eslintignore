@@ -15,6 +15,7 @@
 /packages/api-server/dumps/*
 /packages/api-server/local/*/*
 /packages/api-server/src/graphql/schema.ts
+/packages/api-server/doc/**/*
 
 # Static Web Application #
 ##########################
