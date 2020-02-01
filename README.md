@@ -59,7 +59,7 @@ on the left side of the window, then you can click the run button at the top cen
 
 ### Testing
 
-Eslint, prettier, stylelint are automatically run when you commit using husky hooks but you can manually run them bu running the command `yarn run lint' at the root of the project.
+Eslint, prettier, stylelint are automatically run when you commit using husky hooks but you can manually run them by running the command `yarn run test` at the root of the project.
 
 Concerning unit tests, you need to manually run them by going to `cd packages/api-server` and running the command `yarn run run:test`. WARNING : This command will empty the database and fill it with testing data.  
 
