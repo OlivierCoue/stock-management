@@ -1,6 +1,12 @@
 # stock-management
 
+
 ### Installation
+
+Requirements:
+* docker and docker-compose [install](https://docs.docker.com/compose/install/)
+* nodejs >=10.16 [install](https://nodejs.org/en/)
+* yarn >=1.16 [install](https://legacy.yarnpkg.com/en/docs/install)
 
 We first need to install the dependencies.
 
