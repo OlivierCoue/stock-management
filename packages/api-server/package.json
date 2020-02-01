@@ -29,8 +29,6 @@
     "start:development": "yarn run bundle:development:local:watch",
     "start:local": "yarn run bundle:production:local && yarn run serve:local",
     "start:test": "yarn run bundle:production:test && yarn run serve:test",
-    "serve:test:background": "env-cmd -f ../../.env cross-env NODE_ENV=production APP_ENV=test pm2 start dist/main.js",
-    "stop:test:background": "env-cmd -f ../../.env cross-env NODE_ENV=production APP_ENV=test pm2 stop dist/main.js",
     "start:staging": "yarn run bundle:production:staging && yarn run serve:staging",
     "start:live": "yarn run bundle:production:live && yarn run serve:live",
     "debug:development": "yarn run env:cmd-cross NODE_ENV=development ndb node dist/main.js",
@@ -40,8 +38,6 @@
     "debug:production:test": "cross-env APP_ENV=test yarn run debug:production",
     "debug:production:staging": "cross-env APP_ENV=staging yarn run debug:production",
     "debug:production:live": "cross-env APP_ENV=live yarn run debug:production",
-    "test": "yarn run start:test && ../../scripts/wait-server.sh && yarn run run:test && yarn run stop:test:background",
-    "test-no-build": "yarn run serve:test:background && ../../scripts/wait-server.sh && yarn run run:test && yarn run stop:test:background",
     "run:test": "env-cmd -f ../../.env cross-env NODE_ENV=production APP_ENV=test jest",
     "clean": "yarn run clean:bundle && yarn run clean:build && yarn run clean:dumps && yarn run clean:local",
     "clean:bundle": "shx rm -rf dist",
@@ -98,8 +94,6 @@
     "@types/pg": "7.11.1",
     "@types/uuid": "3.4.5",
     "webpack-filter-warnings-plugin": "1.2.1",
-    "node-fetch": "^2.6.0",
-    "fetch-cookie": "^0.7.3",
     "pm2": "^4.2.3"
   },
   "private": true

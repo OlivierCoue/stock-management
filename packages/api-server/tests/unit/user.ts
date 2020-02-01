@@ -16,6 +16,13 @@ describe('User', () => {
       roleName: 'seller',
       password: 'test',
     })
+    testContext.seller2 = await testServices.userService.create({
+      email: 'seller2@test.com',
+      firstName: 'seller2-fn',
+      lastName: 'seller2-ln',
+      roleName: 'seller',
+      password: 'test',
+    })
 
     expect(testContext.seller0).toBeTruthy()
     expect(testContext.seller0.id).toBeTruthy()
@@ -62,9 +69,9 @@ describe('User', () => {
   })
 
   it(`user - delete - success`, async () => {
-    if (!testContext.seller1) return
-    await testServices.userService.delete({ uuid: testContext.seller1.uuid })
-    const seller1 = await testServices.userService.findOne({ where: { uuid: testContext.seller1.uuid } })
-    expect(seller1).toBeFalsy()
+    if (!testContext.seller2) return
+    await testServices.userService.delete({ uuid: testContext.seller2.uuid })
+    const seller2 = await testServices.userService.findOne({ where: { uuid: testContext.seller2.uuid } })
+    expect(seller2).toBeFalsy()
   })
 })

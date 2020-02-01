@@ -9,6 +9,18 @@ export const defaultRoles: { [key: string]: PermissionNames[] } = {
     PermissionNames.USER_READ_OWN,
     PermissionNames.USER_UPDATE_OWN,
     PermissionNames.USER_DELETE_OWN,
+
+    PermissionNames.STORE_READ_ANY,
+
+    PermissionNames.AISLE_READ_ANY,
+    PermissionNames.AISLE_UPDATE_OWN,
+
+    PermissionNames.STOCK_CREATE_OWN,
+    PermissionNames.STOCK_READ_ANY,
+    PermissionNames.STOCK_UPDATE_OWN,
+    PermissionNames.STOCK_DELETE_OWN,
+
+    PermissionNames.PRODUCT_READ_ANY,
   ],
   manager: [
     PermissionNames.ROLE_READ_OWN,

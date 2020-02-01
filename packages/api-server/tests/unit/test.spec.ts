@@ -18,8 +18,12 @@ import { StoreModule } from '../../src/modules/store/module'
 import { MockModule } from '../../src/modules/mock/module'
 import { StoreService } from '../../src/modules/store/service'
 import { UserService } from '../../src/modules/user/service'
+import { AisleService } from '../../src/modules/store/aisle/service'
+import { StockService } from '../../src/modules/store/aisle/stock/service'
+import { ProductService } from '../../src/modules/product/service'
 
 import { testServices } from './test-context'
+import { MockService } from '../../src/modules/mock/service'
 
 describe('Tests', () => {
   let app: INestApplication
@@ -60,10 +64,18 @@ describe('Tests', () => {
     await app.init()
     testServices.storeService = app.get<StoreService>(StoreService)
     testServices.userService = app.get<UserService>(UserService)
+    testServices.aisleService = app.get<AisleService>(AisleService)
+    testServices.productService = app.get<ProductService>(ProductService)
+    testServices.stockService = app.get<StockService>(StockService)
+    const mockService = app.get<MockService>(MockService)
+    await mockService.resetDatabase()
   })
 
   require('./store')
   require('./user')
+  require('./aisle')
+  require('./product')
+  require('./stock')
 
   afterAll(async () => {
     await app.close()
